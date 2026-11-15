@@ -5,8 +5,9 @@ A lightweight, zero-dependency Python captive portal designed for Lubuntu/Ubuntu
 ## Recommended / Tested Hardware
 * **Laptop:** Acer Nitro 7 (Intel Core i7 9th Gen)
 * **OS:** Lubuntu (Ubuntu-based LXQt)
-* **Internet Source (WAN):** TP-Link Extender connected via Ethernet (`enp7s0`)
+* **Internet Source (WAN):** TP-Link Extender via Ethernet (`enp7s0`)
 * **Hotspot Interface (LAN):** Built-in Wi-Fi (`wlp8s0`)
+* **Tested Client Device:** iPhone 11 (iOS Captive Network Assistant)
 
 ## Setup & Usage
 
