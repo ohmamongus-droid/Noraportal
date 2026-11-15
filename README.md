@@ -1,4 +1,3 @@
-cat << 'EOF' > ~/Noraportal/README.md
 # Noraportal
 
 A lightweight, zero-dependency Python captive portal designed to run on top of an existing Lubuntu/Ubuntu NetworkManager Wi-Fi hotspot.
