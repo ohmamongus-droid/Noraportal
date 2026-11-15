@@ -2,6 +2,12 @@
 
 A lightweight, zero-dependency Python captive portal designed for Lubuntu/Ubuntu NetworkManager Wi-Fi hotspots, documented for the Acer Nitro 7 / TP-Link Ethernet setup. For complete installation and firewall configuration details, please refer to your local setup scripts.
 
+## Recommended / Tested Hardware
+* **Laptop:** Acer Nitro 7 (Intel Core i7 9th Gen)
+* **OS:** Lubuntu (Ubuntu-based LXQt)
+* **Internet Source (WAN):** TP-Link Extender connected via Ethernet (`enp7s0`)
+* **Hotspot Interface (LAN):** Built-in Wi-Fi (`wlp8s0`)
+
 # Noraportal
 
 A lightweight, zero-dependency Python captive portal designed to run on top of an existing Lubuntu/Ubuntu NetworkManager Wi-Fi hotspot.
