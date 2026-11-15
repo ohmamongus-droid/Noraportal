@@ -28,4 +28,3 @@ Press `Ctrl + C` in the terminal, then run:
 sudo iptables -t nat -F PREROUTING
 sudo iptables -F FORWARD
 ```
-EOF
