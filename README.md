@@ -15,23 +15,18 @@ A lightweight, zero-dependency Python captive portal designed for Lubuntu/Ubuntu
 2. Check your Wi-Fi and internet interface names using `nmcli device status` (defaults are `wlp8s0` and `enp7s0`).
 3. Apply the `iptables` redirect rules and start **Noraportal**:
 
+## Quick Start
+
 ```bash
-sudo iptables -t nat -F PREROUTING
-sudo iptables -F FORWARD
-sudo iptables -t nat -I PREROUTING 1 -i wlp8s0 -p tcp --dport 80 -j DNAT --to-destination 10.42.0.1:80
-sudo iptables -I INPUT 1 -i wlp8s0 -p tcp --dport 80 -j ACCEPT
-sudo iptables -I FORWARD 1 -i wlp8s0 -o enp7s0 -p udp --dport 53 -j ACCEPT
-sudo iptables -I FORWARD 2 -i wlp8s0 -o enp7s0 -p tcp --dport 53 -j ACCEPT
-sudo iptables -I FORWARD 3 -i wlp8s0 -o enp7s0 -j DROP
-sudo python3 portal.py
+git clone https://github.com
+cd Noraportal
+chmod +x start.sh stop.sh
+sudo ./start.sh
 ```
 
 ## Stop & Reset Firewall
 
-Press `Ctrl + C` in the terminal, then run:
-
 ```bash
-sudo iptables -t nat -F PREROUTING
-sudo iptables -F FORWARD
+sudo ./stop.sh
 ```
-
+*(Or press `Ctrl + C` in the terminal to stop the server before running the script).*
