@@ -1,5 +1,9 @@
 # Noraportal
 
+A lightweight, zero-dependency Python captive portal designed for Lubuntu/Ubuntu NetworkManager Wi-Fi hotspots, documented for the Acer Nitro 7 / TP-Link Ethernet setup. For complete installation and firewall configuration details, please refer to your local setup scripts.
+
+# Noraportal
+
 A lightweight, zero-dependency Python captive portal designed to run on top of an existing Lubuntu/Ubuntu NetworkManager Wi-Fi hotspot.
 
 ## Setup & Usage
@@ -27,3 +31,4 @@ Press `Ctrl + C` in the terminal, then run:
 sudo iptables -t nat -F PREROUTING
 sudo iptables -F FORWARD
 ```
+
