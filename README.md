@@ -8,10 +8,6 @@ A lightweight, zero-dependency Python captive portal designed for Lubuntu/Ubuntu
 * **Internet Source (WAN):** TP-Link Extender connected via Ethernet (`enp7s0`)
 * **Hotspot Interface (LAN):** Built-in Wi-Fi (`wlp8s0`)
 
-# Noraportal
-
-A lightweight, zero-dependency Python captive portal designed to run on top of an existing Lubuntu/Ubuntu NetworkManager Wi-Fi hotspot.
-
 ## Setup & Usage
 
 1. Turn on your built-in Lubuntu Wi-Fi hotspot.
