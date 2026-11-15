@@ -1,9 +1,10 @@
+cat << 'EOF' > ~/Noraportal/portal.py
 import http.server
 import socketserver
 import subprocess
 
-INTERFACE = "wlp8s0"
-WAN = "enp7s0"
+INTERFACE = "wlp8s0"   # Wi-Fi hotspot interface (check with 'nmcli device status')
+WAN = "enp7s0"         # Internet source interface (check with 'nmcli device status')
 PORT = 80
 
 HTML_PAGE = """<!DOCTYPE html>
@@ -75,7 +76,7 @@ HTML_PAGE = """<!DOCTYPE html>
 </body>
 </html>"""
 
-class iOSPortalHandler(http.server.BaseHTTPRequestHandler):
+class CaptivePortalHandler(http.server.BaseHTTPRequestHandler):
     def do_GET(self):
         self.send_response(200)
         self.send_header("Content-type", "text/html; charset=utf-8")
@@ -85,16 +86,24 @@ class iOSPortalHandler(http.server.BaseHTTPRequestHandler):
 
     def do_POST(self):
         client_ip = self.client_address[0]
-        print(f"Authorizing iPhone IP: {client_ip}")
+        print(f"Authorizing Device IP: {client_ip}")
         subprocess.run(["iptables", "-t", "nat", "-I", "PREROUTING", "1", "-s", client_ip, "-i", INTERFACE, "-p", "tcp", "--dport", "80", "-j", "ACCEPT"])
         subprocess.run(["iptables", "-I", "FORWARD", "1", "-s", client_ip, "-i", INTERFACE, "-o", WAN, "-j", "ACCEPT"])
         
-        self.send_response(200)
-        self.send_header("Content-type", "text/html")
-        self.end_headers()
-        self.wfile.write(b"<HTML><HEAD><TITLE>Success</TITLE></HEAD><BODY>Success</BODY></HTML>")
+        user_agent = self.headers.get("User-Agent", "").lower()
+        if "android" in user_agent:
+            # Return HTTP 204 so Android automatically dismisses its captive portal sheet
+            self.send_response(204)
+            self.end_headers()
+        else:
+            # Return Apple's expected Success HTML for iOS/macOS
+            self.send_response(200)
+            self.send_header("Content-type", "text/html")
+            self.end_headers()
+            self.wfile.write(b"<HTML><HEAD><TITLE>Success</TITLE></HEAD><BODY>Success</BODY></HTML>")
 
 socketserver.TCPServer.allow_reuse_address = True
-with socketserver.TCPServer(("", PORT), iOSPortalHandler) as httpd:
-    print(f"iOS Captive Portal running directly on {INTERFACE} (port {PORT})...")
+with socketserver.TCPServer(("", PORT), CaptivePortalHandler) as httpd:
+    print(f"Noraportal running on {INTERFACE} (port {PORT})...")
     httpd.serve_forever()
+EOF
