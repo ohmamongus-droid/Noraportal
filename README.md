@@ -1,5 +1,5 @@
-cat << 'EOF' > ~/lubuntu-captive-portal/README.md
-# Lubuntu Captive Portal
+cat << 'EOF' > ~/Noraportal/README.md
+# Noraportal
 
 A lightweight, zero-dependency Python captive portal designed to run on top of an existing Lubuntu/Ubuntu NetworkManager Wi-Fi hotspot.
 
@@ -7,7 +7,7 @@ A lightweight, zero-dependency Python captive portal designed to run on top of a
 
 1. Turn on your built-in Lubuntu Wi-Fi hotspot.
 2. Check your Wi-Fi and internet interface names using `nmcli device status` (defaults are `wlp8s0` and `enp7s0`).
-3. Apply the `iptables` redirect rules and start the portal:
+3. Apply the `iptables` redirect rules and start **Noraportal**:
 
 ```bash
 sudo iptables -t nat -F PREROUTING
