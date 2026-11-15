@@ -1,4 +1,3 @@
-cat << 'EOF' > ~/Noraportal/portal.py
 import http.server
 import socketserver
 import subprocess
